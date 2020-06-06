@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import { GoogleSigninButton } from './Components/GoogleSigninButton/googleSigninButton';
+import { Router } from './Components/Router';
 
 function App() {
   return (
     <div className="App">
-      <GoogleSigninButton/>
+      <Router />
     </div>
   );
 }
