@@ -7,17 +7,19 @@ export function Home() {
   useEffect(() => {
     const urlParams = queryString.parse(window.location.search);
 
-    if (urlParams.error) {
-      console.log(`An error occurred: ${urlParams.error}`);
-    } else {
+    if (urlParams.code) {
       setCode(urlParams.code);
-      fetch("http://localhost:8080/google", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ code: code }),
-      });
+      if (code !== "") {
+        fetch("http://localhost:8080/google", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ code: code }),
+        });
+      }
+    } else {
+      console.log("No code received from Google !");
     }
   }, [code]);
 
