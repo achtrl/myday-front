@@ -31,15 +31,18 @@ export function AirQualityWidget() {
   const [airQuality, setAirQuality] = useState(null);
 
   useEffect(() => {
-    fetch(process.env.API_URL + "/api/airQuality", {
+    fetch(process.env.REACT_APP_API_URL + "/api/airQuality", {
       method: "GET",
       headers: {
         "Content-type": "application/json",
+        "Accept": "application/json"
       },
     })
       .then((response) => {
         console.log(response);
-        return response.json();
+        if (response.ok) {
+          return response.json();
+        }
       })
       .then((data) => {
         console.log(data);
