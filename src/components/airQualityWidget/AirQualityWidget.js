@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 const weatherStyle = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    maxWidth: 360,
-    backgroundColor: "#FBFBFB",
-    padding: 20,
-    borderRadius: 15,
-    margin: 40,
   },
   chip: {
     margin: theme.spacing(0.5),
@@ -28,10 +22,10 @@ const weatherStyle = makeStyles((theme) => ({
 
 export function AirQualityWidget() {
   const classes = weatherStyle();
-  const [airQuality, setAirQuality] = useState(null);
+  const [airQualityData, setAirQualityData] = useState({});
 
-  useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + "/api/airQuality", {
+  async function getAirQuality(){
+    return await fetch(process.env.REACT_APP_API_URL + "/api/airQuality", {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -39,17 +33,22 @@ export function AirQualityWidget() {
       },
     })
       .then((response) => {
-        console.log(response);
         if (response.ok) {
           return response.json();
         }
       })
-      .then((data) => {
-        console.log(data);
+      .then((body) => {
+        return body
       })
       .catch((er) => {
         console.log(er);
       });
+  }
+
+  useEffect(() => {
+    getAirQuality().then((data) => {
+      setAirQualityData(data)
+    })
   }, []);
 
   return (
@@ -57,20 +56,22 @@ export function AirQualityWidget() {
       <div className={classes.section1}>
         <Grid container alignItems="center">
           <Grid item xs>
-            <Typography gutterBottom variant="h5">
-              Qualité de l'air
+            <Typography gutterBottom variant="h6">
+              Indice de qualité de l'air
             </Typography>
           </Grid>
           <Grid item>
             <Typography gutterBottom variant="h4">
-              --
+              {airQualityData.value}
             </Typography>
           </Grid>
         </Grid>
-        <Typography color="textSecondary" variant="body2">
-          Aujourd'hui, la qualité de l'air est
+        <Typography color="textSecondary" variant="body1">
+          Aujourd'hui, la qualité de l'air est {airQualityData.description}
         </Typography>
       </div>
     </div>
   );
 }
+
+
