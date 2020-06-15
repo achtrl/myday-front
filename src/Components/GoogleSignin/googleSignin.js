@@ -4,7 +4,7 @@ export function GoogleSignin() {
   const [url, setUrl] = useState("");
 
   async function getGoogleSigninUrl() {
-    return await fetch("http://localhost:8080/google", {
+    return await fetch(process.env.REACT_APP_API_URL + "/api/login", {
       method: "GET",
     })
       .then((response) => {
