@@ -3,6 +3,7 @@ import './App.css';
 import {AirQualityWidget} from './Components/AirQualityWidget/AirQualityWidget';
 import {WeatherWidget} from './Components/WeatherWidget/WeatherWidget';
 
+
 function App() {
   return (
     <div className="App">
@@ -18,7 +19,6 @@ function App() {
       <div id="weatherWidget">
         <WeatherWidget/>
       </div>
-      
      
     </div>
   );
