@@ -6,16 +6,16 @@ import { Typography } from '@material-ui/core';
 const weatherStyle = makeStyles((theme) => ({
 }));
 
-export function AirQualityWidget() {
+export function WeatherWidget() {
   const classes = weatherStyle();
-  const [airQualityData, setAirQualityData] = useState({});
+  const [weatherData, setweatherData] = useState({});
 
-  async function getAirQuality() {
-    return await fetch(process.env.REACT_APP_API_URL + "/api/airQuality", {
+  async function getWeather(){
+    return await fetch(process.env.REACT_APP_API_URL + "/api/weather", {
       method: "GET",
       headers: {
         "Content-type": "application/json",
-        "Accept": "application/json",
+        "Accept": "application/json"
       },
     })
       .then((response) => {
@@ -32,8 +32,9 @@ export function AirQualityWidget() {
   }
 
   useEffect(() => {
-    getAirQuality().then((data) => {
-      setAirQualityData(data)
+    getWeather().then((data) => {
+      console.log(data)
+      setweatherData(data)
     })
   }, []);
 
@@ -43,22 +44,25 @@ export function AirQualityWidget() {
         <Grid container alignItems="center">
           <Grid item xs>
             <Typography gutterBottom variant="h6">
-              Indice de qualité de l'air
+              Température extérieur 
             </Typography>
           </Grid>
           <Grid item>
             <Typography gutterBottom variant="h4">
-              {airQualityData.value}
+               {weatherData.temperature}°C
             </Typography>
           </Grid>
         </Grid>
         <Typography color="textSecondary" variant="body1">
-          Aujourd'hui, la qualité de l'air est <b>{airQualityData.description}</b>.
+          Aujourd'hui, le temps est <b>{weatherData.description}</b>.
+        </Typography>
+        <Typography color="textSecondary" variant="body1">
+          Nous vous conseillons de prendre {weatherData.outfit}.
         </Typography>
       </div>
     </div>
 
-
+    
   );
 }
 

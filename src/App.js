@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {AirQualityWidget} from './Components/AirQualityWidget/AirQualityWidget';
-// import {Title} from './Components/Title/Title';
+import {WeatherWidget} from './Components/WeatherWidget/WeatherWidget';
 
 function App() {
   return (
@@ -13,6 +13,10 @@ function App() {
       
       <div id="airQualityWidget">
         <AirQualityWidget/>
+      </div>
+
+      <div id="weatherWidget">
+        <WeatherWidget/>
       </div>
       
      
