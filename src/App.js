@@ -1,12 +1,25 @@
 import React from 'react';
 import './App.css';
-import { Router } from './Components/Router';
+import {AirQualityWidget} from './Components/AirQualityWidget/AirQualityWidget';
+import {WeatherWidget} from './Components/WeatherWidget/WeatherWidget';
 
 
 function App() {
   return (
     <div className="App">
-      <Router />
+
+      <div id="Title">
+        <h1>Ma page d'accueil</h1>
+      </div>
+      
+      <div id="airQualityWidget">
+        <AirQualityWidget/>
+      </div>
+
+      <div id="weatherWidget">
+        <WeatherWidget/>
+      </div>
+     
     </div>
   );
 }

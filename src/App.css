@@ -1,0 +1,59 @@
+@import "~fontsource-roboto/vietnamese-300-italic.css";
+
+html {
+    background-color: bisque;
+    font-family: "Roboto";
+}
+
+#Title {
+    color: white;
+    font-size: 30px;
+    text-shadow: -1px -1px rgb(174, 180, 147), 1px 1px rgb(85, 85, 85), -3px 0 3px #000;
+    padding:16px;
+    font-weight:lighter;
+    text-align:center;
+    margin:16px;
+}
+
+#airQualityWidget{
+    float: left;
+    padding: 35px;
+    margin: 40px;
+    margin-left: 60px;
+
+    width: 40%;
+    max-width: 400px;
+    min-width: 300px;
+
+    border-radius: 15px;
+    background-color: white;
+    
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+}
+
+#weatherWidget {
+    float: right;
+    padding: 35px;
+    margin: 40px;
+    margin-right: 60px;
+
+    width: 40%;
+    max-width: 400px;
+    min-width: 300px;
+    
+    border-radius: 15px;
+    background-color: white;
+    
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+}
+
+@media screen and (max-width: 1155px) {
+    #weatherWidget {
+        float: left;
+        margin-left: 60px;
+    }
+  }
