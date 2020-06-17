@@ -33,7 +33,6 @@ export function WeatherWidget() {
 
   useEffect(() => {
     getWeather().then((data) => {
-      console.log(data)
       setweatherData(data)
     })
   }, []);
