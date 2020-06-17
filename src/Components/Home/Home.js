@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
+import '../../App.css';
 import * as queryString from "query-string";
+import { WeatherWidget } from "../WeatherWidget/WeatherWidget";
+import { AirQualityWidget } from "../AirQualityWidget/AirQualityWidget";
+
+
 
 export function Home() {
   const [code, setCode] = useState("");
@@ -37,7 +42,21 @@ export function Home() {
 
   return (
     <div className="container">
-      <h1>Home</h1>
+
+      <div id="Title">
+        <h1>Bonjour 
+        </h1>
+      </div>
+      
+      <div id="airQualityWidget">
+        <AirQualityWidget/>
+      </div>
+
+      <div id="weatherWidget">
+        <WeatherWidget/>
+      </div>
+
+
     </div>
   );
 }
