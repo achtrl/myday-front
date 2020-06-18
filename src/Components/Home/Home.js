@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import '../../App.css';
+import "../../App.css";
 import * as queryString from "query-string";
 import { WeatherWidget } from "../WeatherWidget/WeatherWidget";
 import { AirQualityWidget } from "../AirQualityWidget/AirQualityWidget";
-
-
+import { useAuth } from "../../Auth/useAuth";
+import { Loading } from "../Loading";
 
 export function Home() {
   const [code, setCode] = useState("");
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
+
+  const auth = useAuth();
 
   useEffect(() => {
     const urlParams = queryString.parse(window.location.search);
@@ -21,42 +23,37 @@ export function Home() {
 
     if (urlParams.code) {
       setCode(urlParams.code);
-      if (code !== "" && longitude !== 0 && latitude !== 0) {
+      if (code !== "" && latitude !== 0 && longitude !== 0) {
         console.log("REQUEST");
-        fetch(process.env.REACT_APP_API_URL + "/api/login", {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({ 
-            code: code,
-            latitude: latitude,
-            longitude: longitude 
-          }),
-        });
+        let submitBody = {
+          code: code,
+          latitude: latitude,
+          longitude: longitude,
+        };
+        auth.signIn(submitBody);
       }
     } else {
       console.log("No code received from Google !");
     }
-  }, [code, latitude, longitude]);
+  }, [code, longitude, latitude]);
 
   return (
     <div className="container">
+      {auth.state.isLoading ? <Loading/> : (
+        <>
+          <div id="Title">
+            <h1>Bonjour</h1>
+          </div>
 
-      <div id="Title">
-        <h1>Bonjour 
-        </h1>
-      </div>
-      
-      <div id="airQualityWidget">
-        <AirQualityWidget/>
-      </div>
+          <div id="airQualityWidget">
+            <AirQualityWidget />
+          </div>
 
-      <div id="weatherWidget">
-        <WeatherWidget/>
-      </div>
-
-
+          <div id="weatherWidget">
+            <WeatherWidget />
+          </div>
+        </>
+      )}
     </div>
   );
 }

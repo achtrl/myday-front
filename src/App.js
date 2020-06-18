@@ -1,12 +1,15 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 import { Router } from "./Components/Router";
+import { ProvideAuth } from "./Auth/useAuth";
 
 function App() {
   return (
-    <div className="App">
-      <Router/>
-    </div>
+    <ProvideAuth>
+      <div className="App">
+        <Router />
+      </div>
+    </ProvideAuth>
   );
 }
 
