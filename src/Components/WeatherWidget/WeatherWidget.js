@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
+import { useAuth } from '../../Auth/useAuth';
 
 const weatherStyle = makeStyles((theme) => ({
 }));
@@ -10,8 +11,10 @@ export function WeatherWidget() {
   const classes = weatherStyle();
   const [weatherData, setweatherData] = useState({});
 
+  const auth = useAuth();
+
   async function getWeather(){
-    return await fetch(process.env.REACT_APP_API_URL + "/api/weather", {
+    return await fetch(process.env.REACT_APP_API_URL + "/api/weather?googleId=" + auth.state.googleId, {
       method: "GET",
       headers: {
         "Content-type": "application/json",

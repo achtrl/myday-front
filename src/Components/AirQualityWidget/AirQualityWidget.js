@@ -14,7 +14,7 @@ export function AirQualityWidget() {
   const auth = useAuth();
 
   async function getAirQuality() {
-    return await fetch(process.env.REACT_APP_API_URL + "/api/airQuality", {
+    return await fetch(process.env.REACT_APP_API_URL + "/api/airQuality?googleId=" + auth.state.googleId, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
