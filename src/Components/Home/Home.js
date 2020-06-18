@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "../../App.css";
 import * as queryString from "query-string";
-import { WeatherWidget } from "../WeatherWidget/WeatherWidget";
-import { AirQualityWidget } from "../AirQualityWidget/AirQualityWidget";
+import { WeatherWidget } from "../WeatherWidget";
+import { AirQualityWidget } from "../AirQualityWidget";
 import { useAuth } from "../../Auth/useAuth";
 import { Loading } from "../Loading";
 
@@ -37,23 +36,38 @@ export function Home() {
     }
   }, [code, longitude, latitude]);
 
-  return (
-    <div className="container">
-      {auth.state.isLoading ? <Loading/> : (
-        <>
-          <div id="Title">
-            <h1>Bonjour</h1>
-          </div>
+  return auth.state.isLoading ? (
+    <Loading />
+  ) : (
+    <>
+      <div className="container">
+        <h1
+          style={{
+            fontFamily: "Pacifico, cursive",
+            fontWeight: "normal",
+            fontSize: "5em",
+            margin: "0.25em",
+          }}
+        >
+          {getWelcomeMessage() + auth.state.first_name + " !"}
+        </h1>
 
-          <div id="airQualityWidget">
+        <div className="content">
+          <div className="leftColumn">
             <AirQualityWidget />
-          </div>
-
-          <div id="weatherWidget">
             <WeatherWidget />
           </div>
-        </>
-      )}
-    </div>
+
+          <div className="rightColumn"></div>
+        </div>
+      </div>
+    </>
   );
 }
+
+const getWelcomeMessage = () => {
+  let message = "";
+  const hour = new Date().getHours();
+  hour < 19 ? (message = "Bonjour ") : (message = "Bonsoir ");
+  return message;
+};

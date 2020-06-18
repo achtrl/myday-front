@@ -1,0 +1,21 @@
+.signin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+}
+
+.signin a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+.signin a img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+}

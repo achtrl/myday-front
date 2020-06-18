@@ -1,0 +1,41 @@
+.airQualityWidgetContainer {
+
+    width: 80%;
+    min-height: 30%;
+    padding: 1em;
+    border-radius: 1.5em;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.airQualityLogo {
+    height: 70%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.airQualityLogo img {
+    height: 80%;
+    width: 80%;
+    color: white;
+}
+
+.airQualityWidgetContent {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.value {
+    background-color: white;
+    color: black;
+    padding: 0.2em;
+    border-radius: 0.35em;
+}
