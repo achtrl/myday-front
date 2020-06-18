@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './StyleSignin.css';
 
 export function GoogleSignin() {
   const [url, setUrl] = useState("");
@@ -22,5 +23,9 @@ export function GoogleSignin() {
     getGoogleSigninUrl().then(setUrl);
   }, []);
 
-  return <a href={url}>Sign in with Google</a>;
+  return (
+    <>
+      <a href={url} class="button">Sign in with Google</a>
+  </>
+  )
 }

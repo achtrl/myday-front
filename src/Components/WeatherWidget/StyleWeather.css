@@ -1,0 +1,28 @@
+#weatherWidget {
+    display: flex;
+
+    float: left;
+    padding: 35px;
+    margin: 40px;
+    margin-right: 60px;
+    margin-left: 60px;
+
+    width: 40%;
+    max-width: 400px;
+    min-width: 300px;
+    
+    border-radius: 15px;
+    background-color: white;
+    
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+}
+
+/* @media screen and (max-width: 1155px) {
+    #weatherWidget {
+        float: left;
+        margin-left: 60px;
+    }
+  }
+*/

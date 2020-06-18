@@ -1,0 +1,26 @@
+#airQualityWidget{
+    position: absolute;
+
+    float: left;
+    padding: 35px;
+    margin: 40px;
+    margin-top: 300px;
+    margin-left: 60px;
+
+    width: 40%;
+    max-width: 400px;
+    min-width: 300px;
+
+    border-radius: 15px;
+    background-color: white;
+    
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+}
+
+#airValue {
+    border-radius: 8px;
+    background-color: rgba(27, 128, 27, 0.5);
+    padding: 8px;
+}

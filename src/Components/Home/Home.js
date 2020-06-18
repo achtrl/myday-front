@@ -44,18 +44,16 @@ export function Home() {
     <div className="container">
 
       <div id="Title">
-        <h1>Bonjour 
-        </h1>
-      </div>
-      
-      <div id="airQualityWidget">
-        <AirQualityWidget/>
+        <h1>Bonjour </h1>
       </div>
 
       <div id="weatherWidget">
         <WeatherWidget/>
       </div>
-
+      
+      <div id="airQualityWidget">
+        <AirQualityWidget/>
+      </div>
 
     </div>
   );

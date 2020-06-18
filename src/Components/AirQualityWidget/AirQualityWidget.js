@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
+import './StyleAirQuality.css';
 
 const weatherStyle = makeStyles((theme) => ({
 }));
@@ -37,6 +38,10 @@ export function AirQualityWidget() {
     })
   }, []);
 
+  if (airQualityData.value < 50) {
+
+  }
+
   return (
     <div className={classes.root}>
       <div className={classes.section1}>
@@ -48,7 +53,9 @@ export function AirQualityWidget() {
           </Grid>
           <Grid item>
             <Typography gutterBottom variant="h4">
-              {airQualityData.value}
+              <div id="airValue">
+                {airQualityData.value}
+              </div>
             </Typography>
           </Grid>
         </Grid>

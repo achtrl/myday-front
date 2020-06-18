@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
+import './StyleWeather.css';
 
 const weatherStyle = makeStyles((theme) => ({
 }));
@@ -33,7 +34,6 @@ export function WeatherWidget() {
 
   useEffect(() => {
     getWeather().then((data) => {
-      console.log(data)
       setweatherData(data)
     })
   }, []);
