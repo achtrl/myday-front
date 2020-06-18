@@ -11,6 +11,12 @@ export const reducer = (state, action) => {
         ...state,
         isLoading: false,
       }
+    case "REFRESH":
+      return {
+        ...state,
+        isLoading: false,
+        googleId: action.payload.googleId,
+      }
     default:
       return state;
   }

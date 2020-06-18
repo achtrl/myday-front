@@ -40,10 +40,10 @@ function useProvideAuth() {
           type: "LOGIN",
           payload: body,
         });
+        const d = new Date();
+        d.setTime(d.getTime() + 7*60*60*1000);
+        document.cookie = "googleId=" + body.googleId + ";expires=" + d.toUTCString();
         apiRequests({googleId: body.googleId});
-        dispatch({
-          type: "API_REQUEST"
-        });
       })
       .catch(function (error) {
         console.log(error);
@@ -66,16 +66,43 @@ function useProvideAuth() {
         }
       })
       .then((body) => {
-        console.log(body);
+        dispatch({
+          type: "API_REQUEST"
+        });
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  const refreshPage = (googleId) => {
+    dispatch({
+      type: "REFRESH",
+      payload: {googleId: googleId},
+    })
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(";");
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) === " ") {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
   return {
     state,
     signIn,
     apiRequests,
+    refreshPage,
+    getCookie,
   };
 }

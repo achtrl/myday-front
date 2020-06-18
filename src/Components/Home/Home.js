@@ -14,25 +14,30 @@ export function Home() {
 
   useEffect(() => {
     const urlParams = queryString.parse(window.location.search);
-
     navigator.geolocation.getCurrentPosition(function (position) {
       setLatitude(position.coords.latitude);
       setLongitude(position.coords.longitude);
     });
 
-    if (urlParams.code) {
-      setCode(urlParams.code);
-      if (code !== "" && latitude !== 0 && longitude !== 0) {
-        console.log("REQUEST");
-        let submitBody = {
-          code: code,
-          latitude: latitude,
-          longitude: longitude,
-        };
-        auth.signIn(submitBody);
+    const googleCookie = auth.getCookie("googleId");
+    if (googleCookie === "") {
+      if (urlParams.code) {
+        setCode(urlParams.code);
+        if (code !== "" && latitude !== 0 && longitude !== 0) {
+          console.log("REQUEST");
+          let submitBody = {
+            code: code,
+            latitude: latitude,
+            longitude: longitude,
+          };
+
+          auth.signIn(submitBody);
+        }
+      } else {
+        console.log("No code received from Google !");
       }
     } else {
-      console.log("No code received from Google !");
+      auth.refreshPage(googleCookie);
     }
   }, [code, longitude, latitude]);
 
