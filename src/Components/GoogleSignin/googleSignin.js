@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import button from "../../Ressources/btn_google_signin_light_normal.png";
 
 export function GoogleSignin() {
   const [url, setUrl] = useState("");
@@ -22,5 +23,21 @@ export function GoogleSignin() {
     getGoogleSigninUrl().then(setUrl);
   }, []);
 
-  return <a href={url}>Sign in with Google</a>;
+  return (
+    <div className="signin">
+      <h1
+        style={{
+          fontFamily: "Pacifico, cursive",
+          fontWeight: "normal",
+          fontSize: "5em",
+          margin: "0.25em",
+        }}
+      >
+        MyDay
+      </h1>
+      <a href={url}>
+        <img src={button} alt="Google Signin" />
+      </a>
+    </div>
+  );
 }

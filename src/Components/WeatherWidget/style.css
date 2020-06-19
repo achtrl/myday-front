@@ -1,0 +1,31 @@
+.weatherWidgetContainer {
+
+    width: 90%;
+    min-height: 50%;
+    padding: 1em;
+    border-radius: 1.5em;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 2em;
+}
+
+.weatherLogo {
+    height: 70%;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.weatherLogo img {
+    height: 80%;
+    width: 80%;
+    color: white;
+
+}

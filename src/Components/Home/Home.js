@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "../../App.css";
 import * as queryString from "query-string";
-import { WeatherWidget } from "../WeatherWidget/WeatherWidget";
-import { AirQualityWidget } from "../AirQualityWidget/AirQualityWidget";
+import { WeatherWidget } from "../WeatherWidget";
+import { AirQualityWidget } from "../AirQualityWidget";
 import { useAuth } from "../../Auth/useAuth";
 import { Loading } from "../Loading";
+import { EventsWidget } from "../EventsWidget";
 
 export function Home() {
   const [code, setCode] = useState("");
@@ -15,45 +15,71 @@ export function Home() {
 
   useEffect(() => {
     const urlParams = queryString.parse(window.location.search);
-
     navigator.geolocation.getCurrentPosition(function (position) {
       setLatitude(position.coords.latitude);
       setLongitude(position.coords.longitude);
     });
 
-    if (urlParams.code) {
-      setCode(urlParams.code);
-      if (code !== "" && latitude !== 0 && longitude !== 0) {
-        console.log("REQUEST");
-        let submitBody = {
-          code: code,
-          latitude: latitude,
-          longitude: longitude,
-        };
-        auth.signIn(submitBody);
+    const googleCookie = auth.getCookie("googleId");
+    const nameCookie = auth.getCookie("name");
+    if (googleCookie === "") {
+      if (urlParams.code) {
+        setCode(urlParams.code);
+        if (code !== "" && latitude !== 0 && longitude !== 0) {
+          console.log("REQUEST");
+          let submitBody = {
+            code: code,
+            latitude: latitude,
+            longitude: longitude,
+          };
+          auth.signIn(submitBody);
+        }
+      } else {
+        console.log("No code received from Google !");
       }
     } else {
-      console.log("No code received from Google !");
+      auth.refreshPage(googleCookie, nameCookie);
     }
   }, [code, longitude, latitude]);
 
-  return (
-    <div className="container">
-      {auth.state.isLoading ? <Loading/> : (
-        <>
-          <div id="Title">
-            <h1>Bonjour</h1>
-          </div>
+  return auth.state.isLoading ? (
+    <Loading />
+  ) : (
+    <>
+      <div className="container">
+        <h1
+          style={{
+            fontFamily: "Pacifico, cursive",
+            fontWeight: "normal",
+            fontSize: "5em",
+            margin: "0.25em",
+          }}
+        >
+          {getWelcomeMessage() + auth.state.first_name + " !"}
+        </h1>
 
-          <div id="airQualityWidget">
+        <div className="content">
+          <div className="leftColumn">
             <AirQualityWidget />
-          </div>
-
-          <div id="weatherWidget">
             <WeatherWidget />
           </div>
-        </>
-      )}
-    </div>
+
+          <div className="middleColumn">
+            <EventsWidget />
+          </div>
+
+          <div className="rightColumn">
+            
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
+
+const getWelcomeMessage = () => {
+  let message = "";
+  const hour = new Date().getHours();
+  hour < 19 ? (message = "Bonjour ") : (message = "Bonsoir ");
+  return message;
+};
