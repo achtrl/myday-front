@@ -38,14 +38,6 @@ export function AirQualityWidget() {
   useEffect(() => {
     getAirQuality().then((data) => {
       setAirQualityData(data);
-      // setAirQualityData({
-      //   value: 120,
-      //   description: "mauvaise",
-      // })
-      // setAirQualityData({
-      //   value: 77,
-      //   description: "moyenne",
-      // })
     });
   }, []);
 
@@ -59,7 +51,7 @@ export function AirQualityWidget() {
       <div className="airQualityContent">
         <Grid container alignItems="center">
           <Grid item xs>
-            <Typography gutterBottom variant="h6">
+            <Typography gutterBottom variant="h5">
               Qualité de l'air
             </Typography>
           </Grid>

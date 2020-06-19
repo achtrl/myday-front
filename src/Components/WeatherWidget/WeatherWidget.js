@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { useAuth } from "../../Auth/useAuth";
-import weatherLogo from "../../Ressources/sunLogo.png";
+import sunSkyLogo from "../../Ressources/sunSky.jpg";
+import rainSkyLogo from "../../Ressources/rainSky.jpg";
+import snowSkyLogo from "../../Ressources/snwoSky.png";
 
 export function WeatherWidget() {
   const [weatherData, setweatherData] = useState({});
@@ -42,14 +44,23 @@ export function WeatherWidget() {
   }, []);
 
   return (
-    <div className="weatherWidgetContainer">
-      <div className="weatherLogo">
-        <img alt="logo" src={weatherLogo} />
-      </div>
+    <div
+      className="weatherWidgetContainer"
+      style={{
+        backgroundImage:
+          weatherData.description === "ensoleillé"
+            ? `url(${sunSkyLogo})`
+            : weatherData.description === "pluvieux"
+            ? `url(${rainSkyLogo})`
+            : weatherData.description === "enneigé"
+            ? `url(${snowSkyLogo})`
+            : "white",
+      }}
+    >
       <div className="weatherContent">
         <Grid container alignItems="center">
           <Grid item xs>
-            <Typography gutterBottom variant="h6">
+            <Typography gutterBottom variant="h4">
               Température
             </Typography>
           </Grid>
@@ -59,10 +70,10 @@ export function WeatherWidget() {
             </Typography>
           </Grid>
         </Grid>
-        <Typography color="textSecondary" variant="body1">
+        <Typography variant="body1">
           Actuellement, le temps est <b>{weatherData.description}</b>.
         </Typography>
-        <Typography color="textSecondary" variant="body1">
+        <Typography variant="body1">
           Nous vous conseillons de prendre {weatherData.outfit}.
         </Typography>
       </div>
