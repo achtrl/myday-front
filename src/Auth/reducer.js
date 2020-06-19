@@ -16,6 +16,7 @@ export const reducer = (state, action) => {
         ...state,
         isLoading: false,
         googleId: action.payload.googleId,
+        first_name: action.payload.first_name
       }
     default:
       return state;

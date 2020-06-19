@@ -43,6 +43,7 @@ function useProvideAuth() {
         const d = new Date();
         d.setTime(d.getTime() + 7*60*60*1000);
         document.cookie = "googleId=" + body.googleId + ";expires=" + d.toUTCString();
+        document.cookie = "name=" + body.first_name + ";expires=" + d.toUTCString();
         apiRequests({googleId: body.googleId});
       })
       .catch(function (error) {
@@ -75,10 +76,13 @@ function useProvideAuth() {
       });
   };
 
-  const refreshPage = (googleId) => {
+  const refreshPage = (googleId, first_name) => {
     dispatch({
       type: "REFRESH",
-      payload: {googleId: googleId},
+      payload: {
+        googleId: googleId,
+        first_name: first_name
+      },
     })
   }
 
