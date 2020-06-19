@@ -60,7 +60,7 @@ export function AirQualityWidget() {
         <Grid container alignItems="center">
           <Grid item xs>
             <Typography gutterBottom variant="h6">
-              Indice de qualité de l'air
+              Qualité de l'air
             </Typography>
           </Grid>
           <Grid item>

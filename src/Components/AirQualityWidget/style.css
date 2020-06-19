@@ -1,6 +1,6 @@
 .airQualityWidgetContainer {
 
-    width: 80%;
+    width: 90%;
     min-height: 30%;
     padding: 1em;
     border-radius: 1.5em;
@@ -14,7 +14,7 @@
 }
 
 .airQualityLogo {
-    height: 70%;
+    height: 75%;
     width: 20%;
     display: flex;
     justify-content: center;
@@ -22,13 +22,14 @@
 }
 
 .airQualityLogo img {
-    height: 80%;
-    width: 80%;
+    height: 100%;
+    width: 100%;
     color: white;
 }
 
-.airQualityWidgetContent {
+.airQualityContent {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: flex-start;
 }
