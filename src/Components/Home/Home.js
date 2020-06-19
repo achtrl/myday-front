@@ -4,6 +4,7 @@ import { WeatherWidget } from "../WeatherWidget";
 import { AirQualityWidget } from "../AirQualityWidget";
 import { useAuth } from "../../Auth/useAuth";
 import { Loading } from "../Loading";
+import { EventsWidget } from "../EventsWidget";
 
 export function Home() {
   const [code, setCode] = useState("");
@@ -21,7 +22,6 @@ export function Home() {
 
     const googleCookie = auth.getCookie("googleId");
     const nameCookie = auth.getCookie("name");
-    console.log(nameCookie);
     if (googleCookie === "") {
       if (urlParams.code) {
         setCode(urlParams.code);
@@ -64,7 +64,13 @@ export function Home() {
             <WeatherWidget />
           </div>
 
-          <div className="rightColumn"></div>
+          <div className="middleColumn">
+            <EventsWidget />
+          </div>
+
+          <div className="rightColumn">
+            
+          </div>
         </div>
       </div>
     </>
