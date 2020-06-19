@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { useAuth } from '../../Auth/useAuth';
+import weatherLogo from "../../Ressources/sunLogo.png";
 
 
 export function WeatherWidget() {
@@ -38,6 +39,9 @@ export function WeatherWidget() {
 
   return (
     <div className="weatherWidgetContainer">
+      <div className="weatherLogo">
+        <img alt="logo" src={weatherLogo}/>
+      </div>
       <div className="weatherContent">
         <Grid container alignItems="center">
           <Grid item xs>
