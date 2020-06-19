@@ -4,7 +4,7 @@ import { Typography } from "@material-ui/core";
 import { useAuth } from "../../Auth/useAuth";
 import sunSkyLogo from "../../Ressources/sunSky.jpg";
 import rainSkyLogo from "../../Ressources/rainSky.jpg";
-import snowSkyLogo from "../../Ressources/snwoSky.png";
+import snowSkyLogo from "../../Ressources/snowSky.png";
 
 export function WeatherWidget() {
   const [weatherData, setweatherData] = useState({});
@@ -72,6 +72,9 @@ export function WeatherWidget() {
         </Grid>
         <Typography variant="body1">
           Actuellement, le temps est <b>{weatherData.description}</b>.
+        </Typography>
+        <Typography variant="body1">
+          {weatherData.prediction}
         </Typography>
         <Typography variant="body1">
           Nous vous conseillons de prendre {weatherData.outfit}.
