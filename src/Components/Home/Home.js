@@ -20,6 +20,8 @@ export function Home() {
     });
 
     const googleCookie = auth.getCookie("googleId");
+    const nameCookie = auth.getCookie("name");
+    console.log(nameCookie);
     if (googleCookie === "") {
       if (urlParams.code) {
         setCode(urlParams.code);
@@ -30,14 +32,13 @@ export function Home() {
             latitude: latitude,
             longitude: longitude,
           };
-
           auth.signIn(submitBody);
         }
       } else {
         console.log("No code received from Google !");
       }
     } else {
-      auth.refreshPage(googleCookie);
+      auth.refreshPage(googleCookie, nameCookie);
     }
   }, [code, longitude, latitude]);
 

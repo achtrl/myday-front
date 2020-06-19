@@ -24,7 +24,6 @@
 .airQualityLogo img {
     height: 100%;
     width: 100%;
-    color: white;
 }
 
 .airQualityContent {
@@ -39,4 +38,4 @@
     color: black;
     padding: 0.2em;
     border-radius: 0.35em;
-}
+};
