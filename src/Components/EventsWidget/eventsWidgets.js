@@ -26,7 +26,6 @@ export function EventsWidget() {
         }
       })
       .then((body) => {
-        console.log(body);
         return body;
       })
       .catch((er) => {
@@ -36,7 +35,16 @@ export function EventsWidget() {
 
   useEffect(() => {
     getEvents().then((data) => {
-      setEvents(data);
+      const currentTime = new Date();
+      const eventsData = [];
+      for (const value of data) {
+        const timeData = value.start.split(':');
+        const time = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), parseInt(timeData[0]), parseInt(timeData[1]));
+        if (time > currentTime) {
+          eventsData.push(value);
+        }
+      }
+      setEvents(eventsData);
     });
   }, []);
 
@@ -48,7 +56,7 @@ export function EventsWidget() {
         }}>Événements à venir</h1>
       </div>
       <div className="eventsList">
-        {events.length > 0 ? events.map((event) => <Event event={event} />) : <Event event={{
+        {events.length > 0 ? events.map((event) => <Event key={event} event={event} />) : <Event event={{
             summary: " ",
             start: "",
             location: "Pas d'événement à venir"
@@ -57,3 +65,4 @@ export function EventsWidget() {
     </div>
   );
 }
+

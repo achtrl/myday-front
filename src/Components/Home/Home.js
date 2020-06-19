@@ -5,6 +5,7 @@ import { AirQualityWidget } from "../AirQualityWidget";
 import { useAuth } from "../../Auth/useAuth";
 import { Loading } from "../Loading";
 import { EventsWidget } from "../EventsWidget";
+import { TransportWidget } from "../TransportWidget";
 
 export function Home() {
   const [code, setCode] = useState("");
@@ -69,7 +70,7 @@ export function Home() {
           </div>
 
           <div className="rightColumn">
-            
+            <TransportWidget/>
           </div>
         </div>
       </div>
@@ -80,6 +81,6 @@ export function Home() {
 const getWelcomeMessage = () => {
   let message = "";
   const hour = new Date().getHours();
-  hour < 19 ? (message = "Bonjour ") : (message = "Bonsoir ");
+  hour > 4 && hour < 19 ? (message = "Bonjour ") : (message = "Bonsoir ");
   return message;
 };

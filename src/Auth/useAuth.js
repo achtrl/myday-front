@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useContext, createContext } from "react";
+import React, { useReducer, useContext, createContext } from "react";
 import { reducer } from "./reducer";
 
 const AuthContext = createContext();
