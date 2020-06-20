@@ -34,8 +34,8 @@ export function TransportWidget() {
   async function getEvents() {
     return await fetch(
       process.env.REACT_APP_API_URL +
-      "/api/events?googleId=" +
-      auth.state.googleId,
+        "/api/events?googleId=" +
+        auth.state.googleId,
       {
         method: "GET",
         headers: {
@@ -60,8 +60,8 @@ export function TransportWidget() {
   async function getDirections() {
     return await fetch(
       process.env.REACT_APP_API_URL +
-      "/api/directions?googleId=" +
-      auth.state.googleId,
+        "/api/directions?googleId=" +
+        auth.state.googleId,
       {
         method: "GET",
         headers: {
@@ -144,12 +144,12 @@ export function TransportWidget() {
             center={
               eventLatitude !== 0 && eventLongitude !== 0
                 ? {
-                  lat: eventLatitude,
-                  lng: eventLongitude,
-                }
+                    lat: eventLatitude,
+                    lng: eventLongitude,
+                  }
                 : longitude === 0 && latitude === 0
-                  ? defaultCenter
-                  : {
+                ? defaultCenter
+                : {
                     lat: latitude,
                     lng: longitude,
                   }
@@ -168,23 +168,23 @@ export function TransportWidget() {
         </LoadScript>
       </div>
       <div className="advices">
-        <div className="transport-logo" >
-          <img alt="logo" src={
-            directions.includes('voiture')
-              ? carLogo
-              :  directions.includes('pied')
+        { events.length > 0 && <div className="transport-logo">
+          <img
+            alt="logo"
+            src={
+              directions.includes("voiture")
+                ? carLogo
+                : directions.includes("pied")
                 ? manLogo
-                : directions.includes('vélo')
-                  ? bikeLogo
-                  : ""
-      }
-      />
-        </div>
+                : directions.includes("vélo")
+                ? bikeLogo
+                : ""
+            }
+          />
+        </div>}
 
-        <div className="direction">
-            {directions}.
-        </div>
-        </div>
+        <div className="direction">{directions}.</div>
       </div>
+    </div>
   );
 }
