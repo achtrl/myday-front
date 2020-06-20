@@ -17,7 +17,7 @@ function useProvideAuth() {
   const [state, dispatch] = useReducer(reducer, {
     googleId: "",
     first_name: "",
-    isLoading: true
+    isLoading: true,
   });
 
   const signIn = (submitBody) => {
@@ -41,10 +41,12 @@ function useProvideAuth() {
           payload: body,
         });
         const d = new Date();
-        d.setTime(d.getTime() + 7*60*60*1000);
-        document.cookie = "googleId=" + body.googleId + ";expires=" + d.toUTCString();
-        document.cookie = "name=" + body.first_name + ";expires=" + d.toUTCString();
-        apiRequests({googleId: body.googleId});
+        d.setTime(d.getTime() + 7 * 60 * 60 * 1000);
+        document.cookie =
+          "googleId=" + body.googleId + ";expires=" + d.toUTCString();
+        document.cookie =
+          "name=" + body.first_name + ";expires=" + d.toUTCString();
+        apiRequests({ googleId: body.googleId });
       })
       .catch(function (error) {
         console.log(error);
@@ -67,8 +69,9 @@ function useProvideAuth() {
         }
       })
       .then((body) => {
+        console.log(body);
         dispatch({
-          type: "API_REQUEST"
+          type: "API_REQUEST",
         });
       })
       .catch((err) => {
@@ -81,10 +84,10 @@ function useProvideAuth() {
       type: "REFRESH",
       payload: {
         googleId: googleId,
-        first_name: first_name
+        first_name: first_name,
       },
-    })
-  }
+    });
+  };
 
   function getCookie(cname) {
     var name = cname + "=";

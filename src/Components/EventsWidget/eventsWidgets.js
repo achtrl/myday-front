@@ -56,7 +56,7 @@ export function EventsWidget() {
         }}>Événements à venir</h1>
       </div>
       <div className="eventsList">
-        {events.length > 0 ? events.map((event) => <Event key={event} event={event} />) : <Event event={{
+        {events.length > 0 ? events.map((event, index) => <Event key={index.toString()} event={event} />) : <Event event={{
             summary: " ",
             start: "",
             location: "Pas d'événement à venir"
