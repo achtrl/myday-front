@@ -163,14 +163,6 @@ export function TransportWidget() {
                   lng: eventLongitude,
                 }}
               />
-            ) : latitude !== 0 && longitude !== 0 ? (
-              <Marker
-                key={0}
-                position={{
-                  lat: latitude,
-                  lng: longitude,
-                }}
-              />
             ) : null}
           </GoogleMap>
         </LoadScript>
