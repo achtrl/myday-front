@@ -21,21 +21,26 @@ const defaultCenter = {
   lng: 2.3488,
 };
 
+const directionsInitialState = {
+  transport: "",
+  timeToStart: "",
+};
+
 export function TransportWidget() {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [eventLatitude, setEventLatitude] = useState(0);
   const [eventLongitude, setEventLongitude] = useState(0);
   const [events, setEvents] = useState([]);
-  const [directions, setDirections] = useState("");
+  const [directions, setDirections] = useState(directionsInitialState);
 
   const auth = useAuth();
 
   async function getEvents() {
     return await fetch(
       process.env.REACT_APP_API_URL +
-      "/api/events?googleId=" +
-      auth.state.googleId,
+        "/api/events?googleId=" +
+        auth.state.googleId,
       {
         method: "GET",
         headers: {
@@ -60,8 +65,8 @@ export function TransportWidget() {
   async function getDirections() {
     return await fetch(
       process.env.REACT_APP_API_URL +
-      "/api/directions?googleId=" +
-      auth.state.googleId,
+        "/api/directions?googleId=" +
+        auth.state.googleId,
       {
         method: "GET",
         headers: {
@@ -76,6 +81,7 @@ export function TransportWidget() {
         }
       })
       .then((body) => {
+        console.log(body);
         return body;
       })
       .catch((er) => {
@@ -144,12 +150,12 @@ export function TransportWidget() {
             center={
               eventLatitude !== 0 && eventLongitude !== 0
                 ? {
-                  lat: eventLatitude,
-                  lng: eventLongitude,
-                }
+                    lat: eventLatitude,
+                    lng: eventLongitude,
+                  }
                 : longitude === 0 && latitude === 0
-                  ? defaultCenter
-                  : {
+                ? defaultCenter
+                : {
                     lat: latitude,
                     lng: longitude,
                   }
@@ -168,23 +174,38 @@ export function TransportWidget() {
         </LoadScript>
       </div>
       <div className="advices">
-        <div className="transport-logo" >
-          <img alt="logo" src={
-            directions.includes('voiture')
-              ? carLogo
-              :  directions.includes('pied')
-                ? manLogo
-                : directions.includes('vélo')
-                  ? bikeLogo
-                  : ""
-      }
-      />
-        </div>
+        {events.length > 0 &&
+          directions.transport !== "Il est trop tard pour vous y rendre." && (
+            <div className="transport-logo">
+              <img
+                alt="logo"
+                src={
+                  directions.transport.includes("voiture")
+                    ? carLogo
+                    : directions.transport.includes("pied")
+                    ? manLogo
+                    : directions.transport.includes("vélo")
+                    ? bikeLogo
+                    : ""
+                }
+              />
+            </div>
+          )}
 
-        <div className="direction">
-            {directions}.
-        </div>
-        </div>
+        {events.length > 0 &&
+        directions.transport !== "Il est trop tard pour vous y rendre." ? (
+          <div className="direction">
+            <p>{directions.transport}</p>
+            <p>Heure de départ conseillée : {directions.timeToStart}</p>
+          </div>
+        ) : (
+          <div className="direction" style={{
+            width: "100%"
+          }}>
+            <p>{directions.transport}</p>
+          </div>
+        )}
       </div>
+    </div>
   );
 }
