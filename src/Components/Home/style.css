@@ -17,7 +17,7 @@
 
 h1 {
     font-weight: normal;
-    font-size: 3em;
+    font-size: 5em;
 }
 
 .leftColumn {
@@ -43,4 +43,35 @@ h1 {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+
+@media only screen and (max-width: 800px) {
+    .container h1 {
+        font-size: 3em;
+    }
+
+	.content {
+        flex-direction: column;
+        overflow: auto;
+        padding-top: 3em;
+    }
+
+    .leftColumn {
+        width: 75%;
+        margin-bottom: 2em;
+        order: -1;
+    }
+
+    .middleColumn {
+        width: 75%;
+        margin-bottom: 2em;
+        height: 50vh;
+        order: 2;
+    }
+
+    .rightColumn {
+        width: 75%;
+        height: 50vh;
+        order: 1;
+    }
 }

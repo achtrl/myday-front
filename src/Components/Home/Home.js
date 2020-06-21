@@ -52,7 +52,6 @@ export function Home() {
           style={{
             fontFamily: "Pacifico, cursive",
             fontWeight: "normal",
-            fontSize: "5em",
             margin: "0.25em",
           }}
         >
