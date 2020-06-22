@@ -3,8 +3,10 @@ import { Grid } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { useAuth } from "../../Auth/useAuth";
 import sunSkyLogo from "../../Ressources/sunSky.jpg";
-import rainSkyLogo from "../../Ressources/rainSky.jpg";
+import rainSkyLogo from "../../Ressources/rainSky.png";
 import snowSkyLogo from "../../Ressources/snowSky.png";
+import thunderSkyLogo from "../../Ressources/thunderSky.jpg";
+import cloudSkyLogo from "../../Ressources/cloudSky.jpg";
 
 export function WeatherWidget() {
   const [weatherData, setweatherData] = useState({});
@@ -48,13 +50,17 @@ export function WeatherWidget() {
       className="weatherWidgetContainer"
       style={{
         backgroundImage:
-          weatherData.description === "ensoleillé"
+          weatherData.description === "dégagé"
             ? `url(${sunSkyLogo})`
-            : weatherData.description === "pluvieux"
+            : (weatherData.description === "pluvieux" || weatherData.description === "bruineux") 
             ? `url(${rainSkyLogo})`
             : weatherData.description === "enneigé"
             ? `url(${snowSkyLogo})`
-            : "white",
+            : weatherData.description === "orageux"
+            ? `url(${thunderSkyLogo})`
+            : weatherData.description === "nuageux"
+            ? `url(${cloudSkyLogo})`
+            : "white"
       }}
     >
       <div className="weatherContent">
@@ -77,7 +83,7 @@ export function WeatherWidget() {
           {weatherData.prediction}
         </Typography>
         <Typography variant="body1">
-          Nous vous conseillons de prendre {weatherData.outfit}.
+           {weatherData.outfit}
         </Typography>
       </div>
     </div>
