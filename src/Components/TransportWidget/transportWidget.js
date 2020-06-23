@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../Auth/useAuth";
 import Geocode from "react-geocode";
 import carLogo from "../../Ressources/carLogo.png";
-import manLogo from "../../Ressources/manLogo.png";
+import shoesLogo from "../../Ressources/shoesLogo.png";
 import bikeLogo from "../../Ressources/bikeLogo.png";
 
 Geocode.setApiKey("AIzaSyAlxisiJ5GgjtoqabOef6WSuTUOl2d4vDk");
@@ -183,7 +183,7 @@ export function TransportWidget() {
                   directions.transport.includes("voiture")
                     ? carLogo
                     : directions.transport.includes("pied")
-                    ? manLogo
+                    ? shoesLogo
                     : directions.transport.includes("vélo")
                     ? bikeLogo
                     : ""
