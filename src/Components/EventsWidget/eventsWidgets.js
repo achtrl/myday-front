@@ -44,7 +44,7 @@ export function EventsWidget() {
           eventsData.push(value);
         }
       }
-      setEvents(eventsData);
+    setEvents(eventsData);
     });
   }, []);
 
