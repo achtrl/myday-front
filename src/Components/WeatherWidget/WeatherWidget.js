@@ -71,7 +71,9 @@ export function WeatherWidget() {
             </Typography>
           </Grid>
           <Grid item>
-            <Typography gutterBottom variant="h4">
+            <Typography gutterBottom variant="h4" style={{
+              "marginLeft": "2em"
+            }}>
               {weatherData.temperature}°C
             </Typography>
           </Grid>
